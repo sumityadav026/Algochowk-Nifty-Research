@@ -4,7 +4,7 @@
 
 **Answer:** No. Post-fall 5-day returns are statistically indistinguishable from NIFTY's normal drift, both in-sample and out-of-sample. Full evidence below.
 
-**Research Note:** [docs/research_note.pdf](docs/research_note.pdf) · **AI Usage Note:** [docs/ai_usage_note.pdf](docs/ai_usage_note.pdf) · **Video walkthrough:** [add link once recorded]
+**Research Note:** [docs/research_note.pdf](docs/research_note.pdf) · **AI Usage Note:** [docs/ai_usage_note.pdf](docs/ai_usage_note.pdf) · **Video walkthrough:** [https://drive.google.com/file/d/1sCEhcrQTaADg9ASP9rX8bQZ8-V6-Y4bR/view?usp=sharing]
 
 ## Quick start
 ```bash
