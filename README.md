@@ -50,7 +50,7 @@ src/stats.py         summaries, bootstrap, random-day test, Holm
 src/backtest.py      simple event-driven backtest
 tests/               look-ahead and logic tests, synthetic data generator (pipeline testing only)
 notebooks/           thin notebook over src/
-docs/                research_note.md, ai_usage_note.md
+docs/                research_note.pdf, ai_usage_note.pdf
 ```
 ## Results
 
