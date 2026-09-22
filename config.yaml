@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------
+# ALL research choices live here. Change this file, not the code.
+# Main choices were FIXED BEFORE looking at any results.
+# ---------------------------------------------------------------
+data:
+  ticker: "^NSEI"              # NIFTY 50 on Yahoo Finance
+  start: "2007-09-17"          # Yahoo's NIFTY history begins ~Sep 2007
+  end: null                    # null = latest available
+  raw_csv: "data/nifty_raw.csv"
+  clean_csv: "data/nifty_clean.csv"
+  drop_flat_bars: true         # rows with O=H=L=C are stale/holiday placeholders
+  suspicious_daily_move_pct: 8.0
+  suspicious_gap_pct: 4.0
+  max_calendar_gap_days: 5
+
+event:                         # "significant one-day fall"
+  method: "fixed"              # fixed | percentile | vol_adjusted
+  threshold_pct: 2.0           # fixed: close-to-close return <= -2.0%
+  percentile: 5.0              # percentile: worst 5% (expanding window, no look-ahead)
+  min_history: 250
+  k_sigma: 2.0                 # vol_adjusted: return <= -k * prior 60d std
+  vol_window: 60
+
+trade:
+  entry: "next_open"           # next_open (realistic) | close (optimistic, look-ahead-prone)
+  holding_days: 5              # exit at the CLOSE of event day + H trading days
+  cooldown_days: "auto"        # "auto" = holding_days => non-overlapping trades
+
+costs:
+  commission_bps_per_side: 3.0 # brokerage + STT + exchange fees (index futures/ETF, approx.)
+  slippage_bps_per_side: 2.0
+  # round-trip cost = 2 * (3 + 2) = 10 bps = 0.10%
+
+split:
+  oos_start: "2019-01-01"      # development: start..2018-12-31, out-of-sample: 2019-01-01..end
+
+stats:
+  n_boot: 10000
+  n_perm: 10000
+  ci_level: 0.95
+  seed: 42
+
+robustness:                    # run on DEVELOPMENT period only
+  thresholds_pct: [1.5, 2.0, 3.0]
+  holding_days: [1, 3, 5, 10]
+  entries: ["next_open", "close"]
